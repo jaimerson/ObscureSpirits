@@ -15,8 +15,13 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            animator.SetTrigger("slash");
+            return;
+        }
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         if (x == 0 && z == 0)

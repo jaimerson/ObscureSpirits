@@ -14,6 +14,10 @@ public class Player : MonoBehaviour
         body = GetComponent<Rigidbody>();
     }
 
+    public bool IsAttacking(){
+        return animator.GetCurrentAnimatorStateInfo(0).IsName("slash");
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {

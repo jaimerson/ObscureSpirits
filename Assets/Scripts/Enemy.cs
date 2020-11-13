@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Animator animator;
+    public GameObject prefab;
     public float maxHealth = 100;
     public float currentHealth;
     private bool alive = true;
@@ -20,9 +21,16 @@ public class Enemy : MonoBehaviour
     {
         if (currentHealth <= 0 && alive)
         {
-            animator.SetTrigger("die");
-            alive = false;
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        animator.SetTrigger("die");
+        alive = false;
+        Vector3 newPosition = new Vector3(Random.Range(-10.0f, 10.0f), 0, Random.Range(-10.0f, 10.0f));
+        Instantiate(prefab, newPosition, Quaternion.identity);
     }
 
     public void TakeHit(float damage)

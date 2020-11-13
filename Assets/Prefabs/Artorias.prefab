@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  mainCamera: {fileID: 0}
 --- !u!65 &479357588
 BoxCollider:
   m_ObjectHideFlags: 0

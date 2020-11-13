@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed = 10;
+    public GameObject mainCamera;
     private Animator animator;
     private Rigidbody body;
     // Start is called before the first frame update
@@ -43,9 +44,14 @@ public class Player : MonoBehaviour
         }
         if (z != 0)
         {
+            // Rotate player to where the camera is pointing
+            Vector3 rotation = mainCamera.transform.forward;
+            rotation.y = 0f;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(rotation), Time.time * speed);
+
             forceZ = (z > 0 ? 1 : -1) * speed;
         }
         animator.SetBool("walking", true);
-        body.AddForce(forceX, 0, forceZ, ForceMode.Impulse);
+        body.AddRelativeForce(forceX, 0, forceZ, ForceMode.Impulse);
     }
 }
